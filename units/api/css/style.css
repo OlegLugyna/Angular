@@ -1,0 +1,10 @@
+#search_car {
+  width: 10rem;
+  height: 2.5rem;
+}
+
+#show_car {
+  width: 5rem;
+  height: 3rem;
+  font-size: 2rem;
+}
