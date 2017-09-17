@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Study AngularJs</title>
+    <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/bootstrap/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body ng-controller="Todo">
+    <div class="container">
+        <div ng-include="'./html/page-header.html'"></div>
+        <!-- <div class="page-header">
+            <h1>
+                <img class="photo" src="./images/oleg.jpg" alt="oleg photo">
+                <img class="photo" ng-src="{{::todo.userPhoto}}" alt="oleg photo here">
+                {{::todo.user}}`s To Do List
+                <span class="label label-default" ng-hide="incompleteCount(todo.items)===0"
+                ng-class="warningLevel(todo.items)">{{incompleteCount(todo.items)}}</span>
+            </h1>
+        </div> -->
+        <div class="pannel">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="newItem.action">
+                <span class="input-group-btn">
+                    <button class="btn btn-default"
+                    ng-disabled="!newItem || !newItem.action"        
+                    ng-click="addNewItem(todo.items, newItem)"
+                            >Add</button>
+                </span>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Done</th>
+                        <th>Checkbox</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr ng-repeat="itm in todo.items
+                        | filter:{done:'false'} | orderBy: 'action'"> -->
+                        <tr ng-repeat="itm in todo.items
+                        | checkedItems: showComplete | orderBy: 'action'">
+                        <td>{{itm.action}}</td>
+                        <td>{{itm.done}}</td>
+                        <td><input type="checkbox" ng-model="itm.done"></td>
+                    </tr>
+                    <!-- <tr><td>Estimate...</td><td>No</td></tr>
+                    <tr><td>Create...</td><td>No</td></tr>
+                    <tr><td>Edit...</td><td>Yes</td></tr>
+                    <tr><td>Delete...</td><td>No</td></tr> -->
+                </tbody> 
+                
+                <div task-list></div>
+            </table>
+            <div>
+                <label>
+                    <input type="checkbox" ng-model="showComplete">
+                    Show Complete List
+                </label>
+            </div>
+        </div>
+    </div>
+ 
+<script src="./vendor/angular.min.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
